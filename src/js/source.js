@@ -1,20 +1,21 @@
 document.querySelector("listPokemon")
-document.querySelector("searchInput")
+const searchInput = document.getElementById("searchInput")
 const button = document.getElementById("button-search")
 
+
 button.addEventListener("click", async (e) =>{
-    console.log("Funciona")
-    await buscarPokemon()
+    let search = searchInput.value
+    await buscarPokemon(search)
 })
 
 
 let allPokemons = [];
 
-async function buscarPokemon()  
+async function buscarPokemon(nome)  
     {
         try{
             const response  = await fetch(
-        "https://pokeapi.co/api/v2/pokemon/ditto" 
+        `https://pokeapi.co/api/v2/pokemon/${nome}`
         )
 
         const data = await response.json();
